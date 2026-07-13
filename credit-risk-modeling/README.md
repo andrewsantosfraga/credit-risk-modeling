@@ -18,9 +18,7 @@ Além da construção do modelo preditivo, também foi realizada uma etapa de ot
 
 Desenvolver um modelo capaz de estimar:
 
-\[
-P(\text{Default}=1 \mid X)
-\]
+P(Default = 1 | X)
 
 onde:
 
@@ -28,6 +26,56 @@ onde:
 - **X** representa o conjunto de características disponíveis no momento da decisão.
 
 Sob a perspectiva de negócio, o problema é análogo à estimação da **Probability of Default (PD)**, amplamente utilizada por instituições financeiras para apoiar decisões relacionadas à concessão de crédito e gestão de risco.
+
+---
+
+# 📐 Formulação Matemática
+
+Para cada cliente \(i\), observa-se um vetor de características
+
+\[
+\mathbf{X}_i =
+(x_{i1},x_{i2},\ldots,x_{ip}),
+\]
+
+composto por informações demográficas, limite de crédito e histórico recente de comportamento financeiro.
+
+Define-se a variável resposta como
+
+\[
+Y_i =
+\begin{cases}
+1, & \text{se o cliente entrar em inadimplência no mês } t+1;\\
+0, & \text{caso contrário.}
+\end{cases}
+\]
+
+O objetivo do modelo consiste em estimar a probabilidade condicional
+
+\[
+P(Y_i=1 \mid \mathbf{X}_i).
+\]
+
+Na Regressão Logística, essa probabilidade é modelada por
+
+\[
+P(Y_i=1 \mid \mathbf{X}_i)
+=
+\frac{1}
+{1+\exp\!\left[-\left(\beta_0+\boldsymbol{\beta}^{\top}\mathbf{X}_i\right)\right]}.
+\]
+
+Equivalentemente, pode-se escrever a função logit como
+
+\[
+\log
+\left(
+\frac{P(Y_i=1 \mid \mathbf{X}_i)}
+{1-P(Y_i=1 \mid \mathbf{X}_i)}
+\right)
+=
+\beta_0+\boldsymbol{\beta}^{\top}\mathbf{X}_i.
+\]
 
 ---
 
@@ -212,15 +260,12 @@ credit-risk-modeling/
 
 │
 ├── data/
-│
 ├── notebooks/
-│
 ├── images/
 │
-├── requirements.txt
-│
 ├── README.md
-│
+├── requirements.txt
+├── .gitignore
 └── LICENSE
 ```
 
