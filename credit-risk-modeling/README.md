@@ -31,51 +31,33 @@ Sob a perspectiva de negócio, o problema é análogo à estimação da **Probab
 
 # 📐 Formulação Matemática
 
-Para cada cliente \(i\), observa-se um vetor de características
+Para cada cliente *i*, observa-se um vetor de características **Xᵢ**, composto por informações demográficas, limite de crédito e histórico de pagamentos até o mês *t*.
 
-\[
-\mathbf{X}_i =
-(x_{i1},x_{i2},\ldots,x_{ip}),
-\]
+Define-se a variável resposta como:
 
-composto por informações demográficas, limite de crédito e histórico recente de comportamento financeiro.
+```text
+Yᵢ = 1, se o cliente entrar em inadimplência no mês t + 1
+Yᵢ = 0, caso contrário
+```
 
-Define-se a variável resposta como
+O objetivo do modelo consiste em estimar a probabilidade condicional:
 
-\[
-Y_i =
-\begin{cases}
-1, & \text{se o cliente entrar em inadimplência no mês } t+1;\\
-0, & \text{caso contrário.}
-\end{cases}
-\]
+```text
+P(Yᵢ = 1 | Xᵢ)
+```
 
-O objetivo do modelo consiste em estimar a probabilidade condicional
+Na Regressão Logística, essa probabilidade é modelada pela função logit:
 
-\[
-P(Y_i=1 \mid \mathbf{X}_i).
-\]
+```text
+log(P(Yᵢ = 1 | Xᵢ) / (1 − P(Yᵢ = 1 | Xᵢ))) = β₀ + βᵀXᵢ
+```
 
-Na Regressão Logística, essa probabilidade é modelada por
+onde:
 
-\[
-P(Y_i=1 \mid \mathbf{X}_i)
-=
-\frac{1}
-{1+\exp\!\left[-\left(\beta_0+\boldsymbol{\beta}^{\top}\mathbf{X}_i\right)\right]}.
-\]
-
-Equivalentemente, pode-se escrever a função logit como
-
-\[
-\log
-\left(
-\frac{P(Y_i=1 \mid \mathbf{X}_i)}
-{1-P(Y_i=1 \mid \mathbf{X}_i)}
-\right)
-=
-\beta_0+\boldsymbol{\beta}^{\top}\mathbf{X}_i.
-\]
+- **Yᵢ** representa a ocorrência de inadimplência para o cliente *i*;
+- **Xᵢ** representa o vetor de variáveis explicativas;
+- **β₀** é o intercepto do modelo;
+- **β** representa o vetor de coeficientes estimados.
 
 ---
 
